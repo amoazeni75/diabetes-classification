@@ -8,3 +8,24 @@ onset of diabetes within five years. It is a binary classification problem (onse
 or not as 0). The input variables that describe each patient are numerical and have varying
 scales. Below lists the eight attributes for the dataset:
  </p>
+ 
+ <ul>
+ <li>Number of times pregnant.</li>
+
+ <li>Plasma glucose concentration a 2 hours in an oral glucose tolerance test.</li>
+
+ <li>Diastolic blood pressure (mm Hg).</li>
+
+ <li>Triceps skin fold thickness (mm).</li>
+
+ <li>2-Hour serum insulin (mu U/ml).</li>
+
+ <li>2-Hour serum insulin (mu U/ml). </li>
+
+ <li>2-Hour serum insulin (mu U/ml).</li>
+
+ <li>Age (years). </li>
+
+ <li>Class, onset of diabetes within five years. </li>
+ 
+ </ul>
