@@ -20,9 +20,9 @@ scales. Below lists the eight attributes for the dataset:
 
  <li>2-Hour serum insulin (mu U/ml).</li>
 
- <li>2-Hour serum insulin (mu U/ml). </li>
+ <li>Body mass index.</li>
 
- <li>2-Hour serum insulin (mu U/ml).</li>
+ <li>Diabetes pedigree function.</li>
 
  <li>Age (years). </li>
 
