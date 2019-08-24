@@ -6,7 +6,7 @@ standard machine learning dataset available for free download from the UCI Machi
 repository. It describes patient medical record data for Pima Indians and whether they had an
 onset of diabetes within five years. It is a binary classification problem (onset of diabetes as 1
 or not as 0). The input variables that describe each patient are numerical and have varying
-scales. Below lists the nine attributes for the dataset:
+scales. Below lists the eight attributes for the dataset:
  </p>
  
  <ul>
