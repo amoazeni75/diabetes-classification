@@ -9,6 +9,7 @@ from keras.layers import Dense
 from sklearn.model_selection import train_test_split
 from sklearn.model_selection import StratifiedKFold
 from keras.models import model_from_json
+from keras.callbacks import ModelCheckpoint
 import numpy
 """
 Whenever we work with machine learning algorithms that use a stochastic process (e.g. random
@@ -22,7 +23,7 @@ or to debug a part of your code
 this parameter detrmines which way of evaluating should use
 1: without evaluating   2: automatic evaluating  3:manual evaluating  4: k-fold cross validation 
 """
-evaluation_method = 4
+evaluation_method = 2
 
 # fix random seed for reproducibility
 seed = 7
@@ -37,7 +38,7 @@ Y = dataset[:,8]
 """
 following code will be used in manual evaluating during learning (case 3 in fitting)
 """
-if evaluation_method == 3 :
+if evaluation_method == 4 :
     X_train, X_test, y_train, y_test = train_test_split(X, Y, test_size=0.33, random_state=seed)
 
 # 2 create model
@@ -67,7 +68,11 @@ if evaluation_method != 4 :
     """
     model.compile(loss= 'binary_crossentropy' , optimizer= 'adam' , metrics=[ 'accuracy' ])
     
-    
+    # 3.5  checkpoint : save weights in the network when we have improvment in our network
+    filepath="weights.best.hdf5"
+    checkpoint = ModelCheckpoint(filepath, monitor= 'val_acc' , verbose=1, save_best_only=True,mode= 'max' )
+    callbacks_list = [checkpoint]
+
     # 4 fit model
     """
     Now it is time to execute the model on some data. We can train or fit our model on our 
@@ -84,15 +89,15 @@ if evaluation_method != 4 :
     """
     #4_1 without evaluating network in the process of learning
     if evaluation_method == 1:
-        model.fit(X, Y, nb_epoch=150, batch_size=10)
+        model.fit(X, Y, nb_epoch=150, batch_size=10, callbacks=callbacks_list, verbose=0)
     
     #4_2 with automatic evaluating during learning
     elif evaluation_method == 2: 
-        model.fit(X, Y, validation_split=0.33, nb_epoch=150, batch_size=10)
+        model.fit(X, Y, validation_split=0.33, nb_epoch=150, batch_size=10,callbacks=callbacks_list, verbose=0)
     
     #4_3 with manual evaluating during learning
     elif evaluation_method == 3: 
-        model.fit(X_train, y_train, validation_data=(X_test,y_test), nb_epoch=150, batch_size=10)
+        model.fit(X_train, y_train, validation_data=(X_test,y_test), nb_epoch=150, batch_size=10, callbacks=callbacks_list, verbose=0)
     
     # 5 evaluate the model
     """
@@ -143,7 +148,7 @@ else :
         # Compile model
         model.compile(loss= 'binary_crossentropy' , optimizer= 'adam' , metrics=[ 'accuracy' ])
         # Fit the model
-        model.fit(X[train], Y[train], nb_epoch=150, batch_size=10, verbose=0)
+        model.fit(X[train], Y[train], nb_epoch=150, batch_size=10)
         # evaluate the model
         scores = model.evaluate(X[test], Y[test], verbose=0)
         print("%s: %.2f%%" % (model.metrics_names[1], scores[1]*100))
