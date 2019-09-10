@@ -29,3 +29,7 @@ scales. Below lists the eight attributes for the dataset:
  <li>Class, onset of diabetes within five years. </li>
  
  </ul>
+ 
+<p>
+The primary purpose in this project is learning how to create a sequential neural network and three main ways of evaluating the network such as automatic evaluation during learning, manual selection of data for assessing during training, and K-fold cross-validation.
+</p>
