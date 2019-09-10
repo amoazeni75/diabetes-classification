@@ -8,6 +8,7 @@ from keras.models import Sequential
 from keras.layers import Dense
 from sklearn.model_selection import train_test_split
 from sklearn.model_selection import StratifiedKFold
+from keras.models import model_from_json
 import numpy
 """
 Whenever we work with machine learning algorithms that use a stochastic process (e.g. random
@@ -102,6 +103,34 @@ if evaluation_method != 4 :
     scores = model.evaluate(X, Y)
     print("%s: %.2f%%" % (model.metrics_names[1], scores[1]*100))
     
+    """
+    save model to disk via json format
+    """
+    # serialize model to JSON
+    model_json = model.to_json()
+    with open("model.json", "w") as json_file:
+        json_file.write(model_json)
+    
+    # serialize weights to HDF5
+    model.save_weights("model.h5")
+    print("Saved model to disk")
+    
+    
+    """
+    load json and create model
+    """
+    json_file = open( 'model.json' , 'r' )
+    loaded_model_json = json_file.read()
+    json_file.close()
+    loaded_model = model_from_json(loaded_model_json)
+    # load weights into new model
+    loaded_model.load_weights("model.h5")
+    print("Loaded model from disk")
+    # evaluate loaded model on test data
+    loaded_model.compile(loss= 'binary_crossentropy' , optimizer= 'rmsprop' , metrics=['accuracy'])
+    score = loaded_model.evaluate(X, Y, verbose=0)
+    print ("%s: %.2f%%" % (loaded_model.metrics_names[1], score[1]*100))
+
 else :
     kfold = StratifiedKFold(n_splits=10, shuffle=True, random_state=seed)
     cvscores = []
