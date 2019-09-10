@@ -31,5 +31,5 @@ scales. Below lists the eight attributes for the dataset:
  </ul>
  
 <p>
-The primary purpose in this project is learning how to create a sequential neural network and three main ways of evaluating the network; automatic evaluation during learning, manual selection of data for assessing during training, and K-fold cross-validation were three main ways in the assessment of the network
+The primary purpose in this project is learning how to create a sequential neural network and three main ways of evaluating the network such as automatic evaluation during learning, manual selection of data for assessing during training, and K-fold cross-validation.
 </p>
