@@ -33,3 +33,6 @@ scales. Below lists the eight attributes for the dataset:
 <p>
 The primary purpose in this project is learning how to create a sequential neural network and three main ways of evaluating the network such as automatic evaluation during learning, manual selection of data for assessing during training, and K-fold cross-validation.
 </p>
+
+<p>tutorial source: Deep Learning With Python, Develop Deep Learning Models On Theano And TensorFlow Using
+Keras, Jason Brownlee</p>
